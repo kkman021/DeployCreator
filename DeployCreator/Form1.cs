@@ -48,15 +48,10 @@ namespace DeployCreator
 
             var msDeploy = deploys.FirstOrDefault(x => x.DeployType == "MSDeploy");
 
-            tbxWebDeployArg.Text = $@"Y ""/M:https://{msDeploy.Url}/MsDeploy.axd?Site={msDeploy.SiteName.ToLower()}"" /U:{msDeploy.Account} /P:$(DeployPassword) /A:Basic ""-enableRule:DoNotDeleteRule -setParam:name='IIS Web Application Name',value='{msDeploy.SiteName.ToLower()}'""";
+            tbxWebDeployArg.Text = $@"/Y ""/M:https://{msDeploy.Url}/MsDeploy.axd?Site={msDeploy.SiteName.ToLower()}"" /U:{msDeploy.Account} /P:$(DeployPassword) /A:Basic ""-enableRule:DoNotDeleteRule -setParam:name='IIS Web Application Name',value='{msDeploy.SiteName.ToLower()}'""";
 
         }
-
-        private void btnChose_Click(object sender, EventArgs e)
-        {
-           
-        }
-
+        
         private string Get(XElement element, string name)
         {
             return (string) element.Attribute(name);
